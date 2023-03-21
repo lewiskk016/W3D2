@@ -17,17 +17,20 @@ class Board
     # end
 
     def populate(card = deck)
+
         @board.each_with_index do |a, idx1|
             @board.each_with_index do |b, idx2|
-                @board[idx1][idx2] = deck.sample
+                # (0..deck.length).each do |i|
+                @board[idx1][idx2] = deck[i]
+            end
             end
         end
     end
 
     def deck(list = LIST)
         samp = list.sample(8)
-        deck = samp.concat(samp).shuffle
-        # deck.map { |ele| Card.new(ele)}
+        deck = samp.concat(samp)
+        deck.shuffle.map { |ele| Card.new(ele)}
     end
 
     def render
