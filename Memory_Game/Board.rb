@@ -1,18 +1,25 @@
+require "byebug"
+require './Card.rb'
+
 class Board
         LIST = ("A".."Z").to_a
 
-    def initilize(card)
-        @board = Array.new(5) {Array.new(5)}
+    def initialize
+        # debugger
+        @board = Array.new(4) {Array.new(4)}
     end
 
+    def board
+        @board
+    end
     # def card
     #     @card = []
     # end
 
-    def populate(deck)
-        @board.length.times do |a|
-            @board[0].length.times do |b|
-                @board[a][b] = deck.shift
+    def populate(card = deck)
+        @board.each_with_index do |a, idx1|
+            @board.each_with_index do |b, idx2|
+                @board[idx1][idx2] = deck.sample
             end
         end
     end
@@ -20,22 +27,11 @@ class Board
     def deck(list = LIST)
         samp = list.sample(8)
         deck = samp.concat(samp).shuffle
-        deck.map { |ele| Card.new(ele)}
+        # deck.map { |ele| Card.new(ele)}
     end
 
     def render
-
-    end
-
-    def won?
-
-    end
-
-    def reveal
-
-    end
-
-    def print
+    # debugger
         @board.each do |row|
             puts row.join(" ")
         end
@@ -48,10 +44,17 @@ class Board
 
     def []=(position, value)
         row, col = position
-        self[position] = value
+        @board[row][col] = value
     end
 
 
+    def won?
+
+    end
+
+    def reveal
+
+    end
 
 
 end
