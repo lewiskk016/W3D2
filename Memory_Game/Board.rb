@@ -21,8 +21,7 @@ class Board
         @board.each_with_index do |a, idx1|
             @board.each_with_index do |b, idx2|
                 # (0..deck.length).each do |i|
-                @board[idx1][idx2] = deck[i]
-            end
+                @board[idx1][idx2] = deck.shuffle
             end
         end
     end
